@@ -1,4 +1,4 @@
-(ns finite-automata.dfa-rules-test
+(ns finite-automata.nfa-rules-test
   (:require
    [clojure.test :refer :all]
    [finite-automata.nfa-rules :refer :all]
@@ -8,12 +8,20 @@
             (dfa/->FARule 1 "b" 1)
             (dfa/->FARule 1 "b" 2)
             (dfa/->FARule 2 "a" 3)
-            (dfa/->FARule 2 "b" 3)])
+            (dfa/->FARule 2 "b" 3)
+            (dfa/->FARule 4 :free-move 3)
+            (dfa/->FARule 5 :free-move 4)])
 
 (deftest test-next-states
   (testing "correct next state when only one possibility"
-    (is (= [1] (next-states rules [1] "a"))))
+    (is (= #{1} (next-states rules #{1} "a"))))
   (testing "correct next state when multiple possibilities"
-    (is (= [1 2] (next-states rules [1] "b"))))
+    (is (= #{1 2} (next-states rules #{1} "b"))))
   (testing "correct next state when multiple start states"
-    (is (= [1 3] (next-states rules [1 2] "a")))))
+    (is (= #{1 3} (next-states rules #{1 2} "a")))))
+
+(deftest test-follow-free-moves
+  (testing "no change when no available free moves"
+    (is (= #{1 2} (follow-free-moves rules #{1 2}))))
+  (testing "follows available free moves"
+    (is (= #{1 3 4 5} (follow-free-moves rules #{1 5})))))
