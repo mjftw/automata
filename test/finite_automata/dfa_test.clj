@@ -37,5 +37,5 @@
     (is (true? (accepts-input? dfa "abba"))))
   (testing "returns true when input long seqence puts dfa into accept state"
     (is (true? (accepts-input? dfa "bbbabaabba"))))
-  (testing "returns true when input seqence puts dfa into non-accept state"
+  (testing "returns false when input seqence puts dfa into non-accept state"
     (is (false? (accepts-input? dfa "bba")))))

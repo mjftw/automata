@@ -29,3 +29,5 @@
        values)
       (->NFA (r/follow-free-moves rules current-states) accept-states rules))))
 
+(defn accepts-input? [nfa values]
+  (accepting? (input nfa values)))

@@ -31,3 +31,13 @@
       (is (= (->NFA #{4 5 6} accept-states rules) (input (->NFA #{6} accept-states rules) []))))
     (testing "follows free moves when input moves it into a free move state"
       (is (= (->NFA #{1 4 5 6} accept-states rules) (input nfa "baaa"))))))
+
+(deftest test-accepts-input?
+  (testing "returns true when no input and dfa in already in accept state"
+    (is (true? (accepts-input? (->NFA #{1 3} #{1} []) []))))
+  (testing "returns true when no input and can get to accept state via free moves"
+    (is (true? (accepts-input? (->NFA #{6} #{4} (:rules nfa)) []))))
+  (testing "returns true when input moves NFA into an accept state"
+    (is (true? (accepts-input? nfa "baa"))))
+  (testing "returns false when input does not move NFA into an accept state"
+    (is (false? (accepts-input? nfa "aabb")))))
