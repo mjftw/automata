@@ -9,7 +9,11 @@
                            (r/->FARule 2 "a" 3)
                            (r/->FARule 2 "b" 3)
                            (r/->FARule 3 "a" 4)
-                           (r/->FARule 3 "b" 4)]))
+                           (r/->FARule 3 "b" 4)
+                           (r/->FARule 4 "b" 4)
+                           (r/->FARule 4 "a" 6)
+                           (r/->FARule 5 :free-move 4)
+                           (r/->FARule 6 :free-move 5)]))
 
 (deftest test-accepting?
   (testing "should return true when NFA in an accept state"
@@ -23,5 +27,7 @@
       (is (= (->NFA #{1} accept-states rules) (input nfa "a"))))
     (testing "returns NFA with current-state updated when given a sequence of values"
       (is (= (->NFA #{1 4} accept-states rules) (input nfa ["b" "a" "a"]))))
-    (testing "returns NFA with current-state updated when given a string"
-      (is (= (->NFA #{1 4} accept-states rules) (input nfa "baa"))))))
+    (testing "follows free moves when given no input"
+      (is (= (->NFA #{4 5 6} accept-states rules) (input (->NFA #{6} accept-states rules) []))))
+    (testing "follows free moves when input moves it into a free move state"
+      (is (= (->NFA #{1 4 5 6} accept-states rules) (input nfa "baaa"))))))
