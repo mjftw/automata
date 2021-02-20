@@ -1,3 +1,3 @@
-# Nondeterministic Finite Automata Regular Expression Parser
+# Finite Automata
 
-A basic parser for regular expressions, based on the idea of finite automata.
+[Finite automata](https://en.wikipedia.org/wiki/Finite-state_machine) implementation in Clojure.

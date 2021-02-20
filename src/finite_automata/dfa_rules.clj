@@ -1,4 +1,4 @@
-(ns nfa-regex-parser.dfa-rules)
+(ns finite-automata.dfa-rules)
 
 (defrecord FARule [state input next-state])
 
