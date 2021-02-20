@@ -1,5 +1,6 @@
 (ns finite-automata.dfa
-  (:require [finite-automata.dfa-rules :as r]))
+  "Deterministic Finite Automata (finite state machine)"
+  (:require [finite-automata.rules :as r]))
 
 (defrecord DFA [current-state accept-states rules])
 
