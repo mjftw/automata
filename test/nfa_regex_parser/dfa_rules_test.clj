@@ -13,7 +13,7 @@
     (testing "returns true"
       (is (true? (rule-applies? rule
                                 (:state rule)
-                                (:character rule)))))
+                                (:input rule)))))
     (testing "returns false"
       (is (false? (rule-applies? rule 9 "z"))))))
 
@@ -35,6 +35,6 @@
   (let [rule (->FARule 1 "a" 2)]
     (testing "gets correct next state when matching"
       (is (= (:next-state rule)
-             (next-state rules (:state rule) (:character rule)))))
+             (next-state rules (:state rule) (:input rule)))))
     (testing "returns nil if no matching next state"
       (is (nil? (next-state rules 9 "z"))))))

@@ -1,15 +1,15 @@
 (ns nfa-regex-parser.dfa-rules)
 
-(defrecord FARule [state character next-state])
+(defrecord FARule [state input next-state])
 
-(defn rule-applies? [rule state character]
-  (and (= state (:state rule)) (= character (:character rule))))
+(defn rule-applies? [rule state input]
+  (and (= state (:state rule)) (= input (:input rule))))
 
 (defn follow [rule] (:next-state rule))
 
-(defn rule-for [rules state character]
-  (some #(when (rule-applies? % state character) %)
+(defn rule-for [rules state input]
+  (some #(when (rule-applies? % state input) %)
         rules))
 
-(defn next-state [rules state character]
-  (follow (rule-for rules state character)))
+(defn next-state [rules state input]
+  (follow (rule-for rules state input)))
