@@ -4,7 +4,8 @@
             [finite-automata.dfa-rules :as r]))
 
 (def dfa
-  "A DFA that accepts the strings '' and 'abba'"
+  "A DFA that accepts the strings '' and 'abba'
+  (or abba with values interspersed)"
   (->DFA 1 [1] [(r/->FARule 1 "a" 2)
                 (r/->FARule 1 "b" 1)
                 (r/->FARule 2 "a" 2)
@@ -28,3 +29,13 @@
       (is (= (->DFA 4 accept-states rules) (input dfa ["a" "b" "b"]))))
     (testing "returns DFA with current-state updated when given a string"
       (is (= (->DFA 4 accept-states rules) (input dfa "abb"))))))
+
+(deftest test-accepts-input?
+  (testing "returns true when no input and dfa in already in accept state"
+    (is (true? (accepts-input? dfa []))))
+  (testing "returns true when input seqence puts dfa into accept state"
+    (is (true? (accepts-input? dfa "abba"))))
+  (testing "returns true when input long seqence puts dfa into accept state"
+    (is (true? (accepts-input? dfa "bbbabaabba"))))
+  (testing "returns true when input seqence puts dfa into non-accept state"
+    (is (false? (accepts-input? dfa "bba")))))

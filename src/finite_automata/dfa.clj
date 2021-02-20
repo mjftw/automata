@@ -24,3 +24,6 @@
         rules))
      dfa
      values)))
+
+(defn accepts-input? [dfa values]
+  (accepting? (input dfa values)))
