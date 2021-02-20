@@ -7,3 +7,10 @@
                        [a b])
                      seq2))
               seq1)))
+
+(defn conform-seq [value]
+  "Convert value to lazy sequence. String goes to sequence of char strings"
+  (cond
+    (not (seqable? value)) '(value)
+    (string? value) (map str (seq value))
+    :else (lazy-seq value)))
