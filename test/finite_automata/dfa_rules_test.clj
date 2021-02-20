@@ -1,7 +1,7 @@
-(ns finite-automata.rules-test
+(ns finite-automata.dfa-rules-test
   (:require
    [clojure.test :refer :all]
-   [finite-automata.rules :refer :all]))
+   [finite-automata.dfa-rules :refer :all]))
 
 (def dfa-rules [(->FARule 1 "a" 2)
                 (->FARule 1 "b" 1)
@@ -38,17 +38,3 @@
              (next-state dfa-rules (:state rule) (:input rule)))))
     (testing "returns nil if no matching next state"
       (is (nil? (next-state dfa-rules 9 "z"))))))
-
-(def nfa-rules [(->FARule 1 "a" 1)
-                (->FARule 1 "b" 1)
-                (->FARule 1 "b" 2)
-                (->FARule 2 "a" 3)
-                (->FARule 2 "b" 3)])
-
-(deftest test-next-states
-  (testing "correct next state when only one possibility"
-    (is (= [1] (next-states nfa-rules [1] "a"))))
-  (testing "correct next state when multiple possibilities"
-    (is (= [1 2] (next-states nfa-rules [1] "b"))))
-  (testing "correct next state when multiple start states"
-    (is (= [1 3] (next-states nfa-rules [1 2] "a")))))

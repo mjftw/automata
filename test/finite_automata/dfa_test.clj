@@ -1,7 +1,7 @@
 (ns finite-automata.dfa-test
   (:require [clojure.test :refer :all]
             [finite-automata.dfa :refer :all]
-            [finite-automata.rules :as r]))
+            [finite-automata.dfa-rules :as r]))
 
 (def dfa
   "A DFA that accepts the strings '' and 'abba'
