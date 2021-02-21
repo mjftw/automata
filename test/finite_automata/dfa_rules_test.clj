@@ -46,3 +46,9 @@
     (is (true? (rules-for-state? #{(->FARule 2 "a" 1)} 1))))
   (testing "returns false if no rule with matching start or end state"
     (is (false? (rules-for-state? #{(->FARule 1 "a" 2)} 3)))))
+
+(deftest test-rules-for-input?
+  (testing "returns true if rule with matching input"
+    (is (true? (rules-for-input? #{(->FARule 1 "a" 2)} "a"))))
+  (testing "returns false if no rule with matching input"
+    (is (false? (rules-for-input? #{(->FARule 1 "a" 2)} "z")))))
