@@ -20,9 +20,10 @@
         states
         (recur (s/union states extra-states))))))
 
-(defn rules-for [rules state inputs]
-  (->>
-   (u/combinations rules inputs)
-   (filter (fn [[rule input]] (dr/rule-applies? rule state input)))
-   (map first)
-   set))
+(defn rules-for [rules states inputs]
+  (if (or
+       (empty? (filter #(dr/rules-for-state? rules %) states))
+       (empty? (filter #(dr/rules-for-input? rules %) inputs)))
+    #{}
+    (set (map #(dr/->FARule states % (next-states rules states %))
+              inputs))))

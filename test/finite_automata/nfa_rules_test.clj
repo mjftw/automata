@@ -2,15 +2,15 @@
   (:require
    [clojure.test :refer :all]
    [finite-automata.nfa-rules :refer :all]
-   [finite-automata.dfa-rules :as dfa]))
+   [finite-automata.dfa-rules :as dr]))
 
-(def rules [(dfa/->FARule 1 "a" 1)
-            (dfa/->FARule 1 "b" 1)
-            (dfa/->FARule 1 "b" 2)
-            (dfa/->FARule 2 "a" 3)
-            (dfa/->FARule 2 "b" 3)
-            (dfa/->FARule 4 :free-move 3)
-            (dfa/->FARule 5 :free-move 4)])
+(def rules #{(dr/->FARule 1 "a" 1)
+             (dr/->FARule 1 "b" 1)
+             (dr/->FARule 1 "b" 2)
+             (dr/->FARule 2 "a" 3)
+             (dr/->FARule 2 "b" 3)
+             (dr/->FARule 4 :free-move 3)
+             (dr/->FARule 5 :free-move 4)})
 
 (deftest test-next-states
   (testing "correct next state when only one possibility"
@@ -28,14 +28,14 @@
 
 (deftest test-rules-for
   (testing "returns rules that apply with one input"
-    (is (= #{(dfa/->FARule 1 "b" 1) (dfa/->FARule 1 "b" 2)}
-           (rules-for rules 1 ["b"]))))
+    (is (= #{(dr/->FARule #{1} "b" #{1 2})}
+           (rules-for rules #{1} ["b"]))))
   (testing "returns rules that apply with multiple inputs"
-    (is (= #{(dfa/->FARule 2 "a" 3) (dfa/->FARule 2 "b" 3)}
-           (rules-for rules 2 ["a" "b"]))))
+    (is (= #{(dr/->FARule #{1} "a" #{1}) (dr/->FARule #{1} "b" #{1 2})}
+           (rules-for rules #{1} ["a" "b"]))))
   (testing "returns empty set when no inputs"
-    (is (= #{} (rules-for rules 2 []))))
+    (is (= #{} (rules-for rules #{} []))))
   (testing "returns empty set when no rule with state"
-    (is (= #{} (rules-for rules 10 ["a"]))))
+    (is (= #{} (rules-for rules #{10} ["a"]))))
   (testing "returns empty set when no rule with input"
-    (is (= #{} (rules-for rules 2 ["c"])))))
+    (is (= #{} (rules-for rules #{2} ["c"])))))
