@@ -25,3 +25,17 @@
     (is (= #{1 2} (follow-free-moves rules #{1 2}))))
   (testing "follows available free moves"
     (is (= #{1 3 4 5} (follow-free-moves rules #{1 5})))))
+
+(deftest test-rules-for
+  (testing "returns rules that apply with one input"
+    (is (= #{(dfa/->FARule 1 "b" 1) (dfa/->FARule 1 "b" 2)}
+           (rules-for rules 1 ["b"]))))
+  (testing "returns rules that apply with multiple inputs"
+    (is (= #{(dfa/->FARule 2 "a" 3) (dfa/->FARule 2 "b" 3)}
+           (rules-for rules 2 ["a" "b"]))))
+  (testing "returns empty set when no inputs"
+    (is (= #{} (rules-for rules 2 []))))
+  (testing "returns empty set when no rule with state"
+    (is (= #{} (rules-for rules 10 ["a"]))))
+  (testing "returns empty set when no rule with input"
+    (is (= #{} (rules-for rules 2 ["c"])))))
