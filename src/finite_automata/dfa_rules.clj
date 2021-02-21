@@ -12,6 +12,9 @@
   (some #(when (rule-applies? % state input) %)
         rules))
 
+(defn rules-for-state? [rules state]
+  (not (empty? (filter #(or (= state (:state %)) (= state (:next-state %))) rules))))
+
 (defn next-state [rules state input]
   (follow (rule-for rules state input)))
 
