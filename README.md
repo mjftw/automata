@@ -1,6 +1,6 @@
 # Automata
 
-[![Build Status](https://www.travis-ci.com/mjftw/automata.finite.svg?branch=master)](https://www.travis-ci.com/mjftw/automata.finite)
+[![Build Status](https://www.travis-ci.com/mjftw/automata.svg?branch=master)](https://www.travis-ci.com/mjftw/automata)
 
 Fundamental machines implemented in Clojure.
 
