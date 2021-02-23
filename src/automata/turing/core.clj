@@ -8,7 +8,19 @@
 ;; Values are always pushed and popped from the leftmost position on the left and
 ;; right tapes. You can think of the tape being folded in on itself, with the head
 ;; position at the fold. In this analogy, moving the head is the same as rolling
-;; the fold to the left or right. See the unit tests for an example.
+;; the fold to the left or right.
+;;
+;; Examples:
+;;
+;; == Move head right ==
+;; left tape       <- - - -
+;; tape head      |
+;; right tape      - - ->
+;;
+;; == Move head left ==
+;; left tape       - - ->
+;; tape head      |
+;; right tape      <- - - -
 (defrecord Tape [left head right])
 
 (defn move-head-left [tape]
