@@ -13,14 +13,14 @@
 ;; Examples:
 ;;
 ;; == Move head right ==
-;; left tape       <- - - -
+;; left tape       <- - -
 ;; tape head      |
-;; right tape      - - ->
+;; right tape      - - - ->
 ;;
 ;; == Move head left ==
-;; left tape       - - ->
+;; left tape       - - - ->
 ;; tape head      |
-;; right tape      <- - - -
+;; right tape      <- - -
 (defrecord Tape [left head right])
 
 (defn move-head-left! [tape]
