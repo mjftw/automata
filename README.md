@@ -1,7 +1,22 @@
-# Finite Automata
+# Automata
 
 [![Build Status](https://www.travis-ci.com/mjftw/automata.finite.svg?branch=master)](https://www.travis-ci.com/mjftw/automata.finite)
 
-Deterministic and Non-deterministic [Finite automata](https://en.wikipedia.org/wiki/Finite-state_machine) implementation in Clojure.
+Fundamental machines implemented in Clojure.
 
-Created while reading along with [Understanding Computation](https://computationbook.com/), which builds finite automata in Ruby.
+## Finite Automata
+
+Deterministic and Non-deterministic [Finite automata](https://en.wikipedia.org/wiki/Finite-state_machine)
+can be found in the `automata.finite` namespace.
+
+## Push Down Automata
+
+== Work in progress ==
+
+## Turing Machines
+
+== Work in progress ==
+
+## References
+
+Created while reading along with [Understanding Computation](https://computationbook.com/), which builds automata in Ruby.
