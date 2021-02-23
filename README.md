@@ -1,6 +1,6 @@
 # Finite Automata
 
-[![Build Status](https://www.travis-ci.com/mjftw/finite-automata.svg?branch=master)](https://www.travis-ci.com/mjftw/finite-automata)
+[![Build Status](https://www.travis-ci.com/mjftw/automata.finite.svg?branch=master)](https://www.travis-ci.com/mjftw/automata.finite)
 
 Deterministic and Non-deterministic [Finite automata](https://en.wikipedia.org/wiki/Finite-state_machine) implementation in Clojure.
 

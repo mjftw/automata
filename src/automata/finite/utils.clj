@@ -1,4 +1,4 @@
-(ns finite-automata.utils)
+(ns automata.finite.utils)
 
 (defn combinations [seq1 seq2]
   (apply concat

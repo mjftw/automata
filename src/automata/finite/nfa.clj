@@ -1,10 +1,10 @@
-(ns finite-automata.nfa
+(ns automata.finite.nfa
   "Non-deterministic Finite Automata"
   (:require [clojure.set :as s]
-            [finite-automata.utils :as u]
-            [finite-automata.dfa :as dfa]
-            [finite-automata.nfa-rules :as nr]
-            [finite-automata.dfa-rules :as dr]))
+            [automata.finite.utils :as u]
+            [automata.finite.dfa :as dfa]
+            [automata.finite.nfa-rules :as nr]
+            [automata.finite.dfa-rules :as dr]))
 
 (defrecord NFA [current-states accept-states rules])
 

@@ -1,7 +1,7 @@
-(ns finite-automata.nfa-test
+(ns automata.finite.nfa-test
   (:require [clojure.test :refer :all]
-            [finite-automata.nfa :refer :all]
-            [finite-automata.dfa-rules :as r]))
+            [automata.finite.nfa :refer :all]
+            [automata.finite.dfa-rules :as r]))
 
 (def nfa (->NFA #{1} #{4} #{(r/->FARule 1 "a" 1)
                             (r/->FARule 1 "b" 1)

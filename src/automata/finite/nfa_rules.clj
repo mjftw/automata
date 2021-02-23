@@ -1,9 +1,9 @@
-(ns finite-automata.nfa-rules
+(ns automata.finite.nfa-rules
   "Rules for Non-deterministic Finite Automata"
   (:require
    [clojure.set :as s]
-   [finite-automata.utils :as u]
-   [finite-automata.dfa-rules :as dr]))
+   [automata.finite.utils :as u]
+   [automata.finite.dfa-rules :as dr]))
 
 (defn next-states [rules states input]
   (->>

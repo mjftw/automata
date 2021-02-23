@@ -1,4 +1,4 @@
-(ns finite-automata.dfa-rules
+(ns automata.finite.dfa-rules
   "Rules for Deterministic Finite Automata (finite state machines)")
 
 (defrecord FARule [state input next-state])
