@@ -3,4 +3,5 @@
             [automata.finite.dfa-rules :as dr]
             [automata.finite.nfa-rules :as nr]
             [automata.finite.dfa :as dfa]
-            [automata.finite.nfa :as nfa]))
+            [automata.finite.nfa :as nfa]
+            [automata.turing.core :as tm]))

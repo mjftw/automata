@@ -15,7 +15,8 @@ can be found in the `automata.finite` namespace.
 
 ## Turing Machines
 
-== Work in progress ==
+[Turing Machines](https://en.wikipedia.org/wiki/Turing_machine) can be found in the
+`automata.turing` namespace.
 
 ## References
 
