@@ -24,6 +24,6 @@
                                           '(1 2 3))))))
   (testing "exception is thrown when trying to move right past end of tape"
     (is (thrown? Exception
-                 (move-head-right (->Tape '(-1 -2 3)
-                                          0
-                                          '()))))))
+                 (move-head-right! (->Tape '(-1 -2 3)
+                                           0
+                                           '()))))))
