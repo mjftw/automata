@@ -1,6 +1,6 @@
-(ns automata.turing.core-test
+(ns automata.turing.tape-test
   (:require [clojure.test :refer :all]
-            [automata.turing.core :refer :all]))
+            [automata.turing.tape :refer :all]))
 
 (def tape (->Tape '(-1 -2 -3) ;left
                   0           ;head

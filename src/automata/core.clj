@@ -4,4 +4,4 @@
             [automata.finite.nfa-rules :as nr]
             [automata.finite.dfa :as dfa]
             [automata.finite.nfa :as nfa]
-            [automata.turing.core :as tm]))
+            [automata.turing.tape :as tmt]))

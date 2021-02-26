@@ -1,5 +1,5 @@
-(ns automata.turing.core
-  "Turing machine implementation")
+(ns automata.turing.tape
+  "Turing machine tape implementation")
 
 ;; Represents the infinite tape a turing machine uses to as input and output.
 ;; For efficiency the tape here consists of two lists and a tape head value. The
