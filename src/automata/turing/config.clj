@@ -1,5 +1,6 @@
 (ns automata.turing.config
-  "Turing Machine configuration includes the tape, rules, and state")
+  "Turing Machine configuration includes the tape, rules, and state"
+  (:require [automata.utils :as u]))
 
 ;; Represents the infinite tape a turing machine uses to as input and output.
 ;; For efficiency the tape here consists of two lists and a tape head value. The
@@ -75,6 +76,15 @@
                     :tape (-> tape
                               (write value)
                               (move direction))})))
+
+(defn rules-valid? [rules]
+  "Are the rules valid for a deterministic machine?
+  I.e. Is there only ever one rule that could apply to a given configuration?"
+  (apply (partial = false)
+         (u/cross-map
+          #(and (= (:state %1) (:state %2))
+                (= (:tape-read %1) (:tape-read %2)))
+          rules)))
 
 (defn rule-for [rules config]
   "Get the rule that applies to the current configuration?

@@ -77,3 +77,13 @@
                           (->TMRule 1 "b" 1 "b" :left)
                           (->TMRule 1 "a" 2 "x" :right)}
                         (->TMConfig 2 (->Tape '("a") "b" '("b"))))))))
+
+(deftest test-rules-valid?
+  (testing "returns true when no rules with same :state and :tape-read"
+    (is (true? (rules-valid? #{(->TMRule 2 "a" 1 "a" :left)
+                               (->TMRule 1 "b" 1 "a" :left)
+                               (->TMRule 1 "a" 1 "a" :left)}))))
+  (testing "returns false when overlapping rules"
+    (is (false? (rules-valid? #{(->TMRule 2 "a" 1 "a" :left)
+                                (->TMRule 1 "b" 1 "a" :left)
+                                (->TMRule 1 "b" 2 "z" :right)})))))
