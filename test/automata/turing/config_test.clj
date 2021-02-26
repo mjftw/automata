@@ -7,26 +7,26 @@
                   '(1 2 3)))  ;right
 
 (deftest test-move-head
-  (testing "move-head-left! success when left position available"
+  (testing "move-head-left success when left position available"
     (is (= (->Tape '(-2 -3)
                    -1
                    '(0 1 2 3))
-           (move-head-left! tape))))
-  (testing "move-head-right! success when right position available"
+           (move-head-left tape))))
+  (testing "move-head-right success when right position available"
     (is (= (->Tape '(0 -1 -2 -3)
                    1
                    '(2 3))
-           (move-head-right! tape))))
-  (testing "exception is thrown when trying to move left past end of tape"
-    (is (thrown? Exception
-                 (move-head-left! (->Tape '()
-                                          0
-                                          '(1 2 3))))))
-  (testing "exception is thrown when trying to move right past end of tape"
-    (is (thrown? Exception
-                 (move-head-right! (->Tape '(-1 -2 3)
-                                           0
-                                           '()))))))
+           (move-head-right tape))))
+  (testing "nil (blank) is added when trying to move left past end of tape"
+    (is (= (->Tape '()
+                   nil
+                   '(0 1 2 3))
+           (move-head-left (assoc tape :left '())))))
+  (testing "nil (blank) is added when trying to move right past end of tape"
+    (is (= (->Tape '(0 -1 -2 -3)
+                   nil
+                   '())
+           (move-head-right (assoc tape :right '()))))))
 
 (deftest test-move
   (testing "move :right moves tape right"

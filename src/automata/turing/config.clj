@@ -32,22 +32,18 @@
 ;; A Configuration is a container wrapping the current state and current tape
 (defrecord TMConfig [state tape])
 
-(defn move-head-left! [tape]
-  "Move the tape head one position to the left. Throw an exception if there is no
-  available tape. A real turing machine's tape is infinite, so this should never happen."
+(defn move-head-left [tape]
+  "Move the tape head one position to the left. A blank tape value is represented
+  by nil. A blank is added to the tape if no left position is available."
   (let [{:keys [left head right]} tape]
-    (when (empty? left)
-      (throw (ex-info "Attempted to move head past left end of tape")))
     (->Tape (rest left)
             (first left)
             (cons head right))))
 
-(defn move-head-right! [tape]
-  "Move the tape head one position to the right. Throw an exception if there is no
-  available tape. A real turing machine's tape is infinite, so this should never happen."
+(defn move-head-right [tape]
+  "Move the tape head one position to the right. A blank tape value is represented
+  by nil. A blank is added to the tape if no right position is available."
   (let [{:keys [left head right]} tape]
-    (when (empty? right)
-      (throw (ex-info "Attempted to move head past right end of tape")))
     (->Tape (cons head left)
             (first right)
             (rest right))))
@@ -56,8 +52,8 @@
   "Move the tape head :left or :right.
   Do nothing for incorrect tape direction"
   (case direction
-    :left (move-head-left! tape)
-    :right (move-head-right! tape)
+    :left (move-head-left tape)
+    :right (move-head-right tape)
     tape))
 
 (defn write [tape value]
