@@ -1,5 +1,5 @@
-(ns automata.turing.tape
-  "Turing machine tape implementation")
+(ns automata.turing.config
+  "Turing Machine configuration includes the tape, rules, and state")
 
 ;; Represents the infinite tape a turing machine uses to as input and output.
 ;; For efficiency the tape here consists of two lists and a tape head value. The
@@ -23,6 +23,14 @@
 ;; right tape      <- - -
 (defrecord Tape [left head right])
 
+;; A rule defines what value should be read from the tape for the machine to move
+;; from one state to the next, what it should write to the tape before moving,
+;; and what direction along the tape it should move (:left, :right)
+(defrecord TMRule [state tape-read next-state tape-write move])
+
+;; A Configuration is a container wrapping the current state and current tape
+(defrecord TMConfig [state tape])
+
 (defn move-head-left! [tape]
   "Move the tape head one position to the left. Throw an exception if there is no
   available tape. A real turing machine's tape is infinite, so this should never happen."
@@ -42,3 +50,8 @@
     (->Tape (cons head left)
             (first right)
             (rest right))))
+
+(defn applies-to? [config rule]
+  "Does this rule apply to this configuration?"
+  (and (= (:state rule) (:state config))
+       (= (:tape-read rule) (:head (:tape config)))))
