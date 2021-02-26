@@ -64,3 +64,16 @@
     (is (= (->TMConfig "b" (->Tape '(:foo 1) 3 '()))
            (follow (->TMRule :? :? "b" :foo :right)
                    (->Tape '(1) 2 '(3)))))))
+
+(deftest test-rule-for
+  (testing "returns first matching rule"
+    (is (= (->TMRule 1 "a" 2 "x" :right)
+           (rule-for #{(->TMRule 2 "a" 1 "b" :left)
+                       (->TMRule 1 "b" 1 "b" :left)
+                       (->TMRule 1 "a" 2 "x" :right)}
+                     (->TMConfig 1 (->Tape '("z") "a" '("y")))))))
+  (testing "returns nil when no matching rules"
+    (is (nil? (rule-for #{(->TMRule 2 "a" 1 "b" :left)
+                          (->TMRule 1 "b" 1 "b" :left)
+                          (->TMRule 1 "a" 2 "x" :right)}
+                        (->TMConfig 2 (->Tape '("a") "b" '("b"))))))))

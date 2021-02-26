@@ -75,3 +75,8 @@
                     :tape (-> tape
                               (write value)
                               (move direction))})))
+
+(defn rule-for [rules config]
+  "Get the rule that applies to the current configuration?
+  Return nil if no rules apply."
+  (some #(when (applies-to? % config) %) rules))
