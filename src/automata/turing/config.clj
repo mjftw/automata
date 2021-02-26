@@ -25,8 +25,8 @@
 
 ;; A rule defines what value should be read from the tape for the machine to move
 ;; from one state to the next, what it should write to the tape before moving,
-;; and what direction along the tape it should move (:left, :right)
-(defrecord TMRule [state tape-read next-state tape-write move])
+;; and what direction along the tape it should direction (:left, :right)
+(defrecord TMRule [state tape-read next-state tape-write direction])
 
 ;; A Configuration is a container wrapping the current state and current tape
 (defrecord TMConfig [state tape])
@@ -51,7 +51,27 @@
             (first right)
             (rest right))))
 
-(defn applies-to? [config rule]
+(defn move [tape direction]
+  "Move the tape head :left or :right.
+  Do nothing for incorrect tape direction"
+  (case direction
+    :left (move-head-left! tape)
+    :right (move-head-right! tape)
+    tape))
+
+(defn write [tape value]
+  "Write a value to the tape"
+  (assoc tape :head value))
+
+(defn applies-to? [rule config]
   "Does this rule apply to this configuration?"
   (and (= (:state rule) (:state config))
        (= (:tape-read rule) (:head (:tape config)))))
+
+(defn follow [rule tape]
+  "Get the configuration resulting from following a given rule on a given tape"
+  (let [{:keys [direction next-state] value :tape-write} rule]
+    (map->TMConfig {:state next-state
+                    :tape (-> tape
+                              (write value)
+                              (move direction))})))
