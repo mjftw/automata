@@ -1,7 +1,7 @@
 (ns automata.finite.nfa
   "Non-deterministic Finite Automata"
   (:require [clojure.set :as s]
-            [automata.finite.utils :as u]
+            [automata.utils :as u]
             [automata.finite.dfa :as dfa]
             [automata.finite.nfa-rules :as nr]
             [automata.finite.dfa-rules :as dr]))

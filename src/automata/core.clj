@@ -1,5 +1,5 @@
 (ns automata.core
-  (:require [automata.finite.utils :refer :all]
+  (:require [automata.utils :refer :all]
             [automata.finite.dfa-rules :as dr]
             [automata.finite.nfa-rules :as nr]
             [automata.finite.dfa :as dfa]

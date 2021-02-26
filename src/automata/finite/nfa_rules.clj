@@ -2,7 +2,7 @@
   "Rules for Non-deterministic Finite Automata"
   (:require
    [clojure.set :as s]
-   [automata.finite.utils :as u]
+   [automata.utils :as u]
    [automata.finite.dfa-rules :as dr]))
 
 (defn next-states [rules states input]
