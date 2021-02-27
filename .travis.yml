@@ -2,5 +2,5 @@ language: clojure
 
 lein: 2.9.5
 script:
-  - lein do clean, cloverage --coveralls
+  - lein do clean, test, cloverage --coveralls
   - curl -F 'json_file=@target/coverage/coveralls.json' 'https://coveralls.io/api/v1/jobs'
