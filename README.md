@@ -1,6 +1,7 @@
 # Automata
 
 [![Build Status](https://www.travis-ci.com/mjftw/automata.svg?branch=master)](https://www.travis-ci.com/mjftw/automata)
+[![Coverage Status](https://coveralls.io/repos/github/mjftw/automata/badge.svg?branch=master)](https://coveralls.io/github/mjftw/automata?branch=master)
 
 Fundamental machines implemented in Clojure.
 
