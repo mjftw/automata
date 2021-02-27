@@ -38,7 +38,9 @@
     (is (= (->Tape '(-2 -3)
                    -1
                    '(0 1 2 3))
-           (move tape :left)))))
+           (move tape :left))))
+  (testing "no change for direction not :left or :right"
+    (is (= tape (move tape :into-the-second-dimension)))))
 
 (deftest test-write
   (testing "updates current tape head"

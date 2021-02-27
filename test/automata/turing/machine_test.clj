@@ -40,4 +40,11 @@
     (is (= (->Tape '(0 1 1) 0 '())
            (:tape (run machine)))))
   (testing "Binary incrementing machine ends in accept state"
-    (is (accepting? (run machine)))))
+    (is (accepting? (run machine))))
+  (testing "Machine halts if ever no rules apply"
+    (is (stuck? (run (assoc machine :state 9)))))
+  (testing "returns nil for non-deterministic machine"
+    (let [old-rules (:rules machine)
+          bad-rules (cons (first old-rules) old-rules)
+          bad-machine (assoc machine :rules bad-rules)]
+      (is (nil? (run bad-machine))))))
