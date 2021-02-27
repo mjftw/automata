@@ -1,12 +1,8 @@
 (ns automata.utils)
 
 (defn combinations [seq1 seq2]
-  (apply concat
-         (map (fn [a]
-                (map (fn [b]
-                       [a b])
-                     seq2))
-              seq1)))
+  (for [s1 seq1 s2 seq2]
+    [s1 s2]))
 
 (defn cross-map [f coll]
   "Find all pairwise combinations of a collection, and apply f to each pair.
